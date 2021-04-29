@@ -42,9 +42,11 @@ public class FlipCard : MonoBehaviour
     /// </summary>
     public void StartFlip()
     {
+        CardManager.cardCount++;
+        CardManager.activeCard.Add(this.gameObject);
+        Debug.Log(this.gameObject);
         //Disable Button
         btn.GetComponent<Button>().enabled= false;
-
         if (isRotateFinished)
         {
             StartCoroutine(CalculateFlip());
@@ -85,6 +87,7 @@ public class FlipCard : MonoBehaviour
                 bRunOnce = false;
                 StartCoroutine(CalculateFlip());
                 isRotateFinished = true;//Disable rotation
+                
             }
         }
     }
@@ -104,7 +107,6 @@ public class FlipCard : MonoBehaviour
             }
         }
         counter = 0;
-
         //Enable button
         btn.GetComponent<Button>().enabled = true;
     }
