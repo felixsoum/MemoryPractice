@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CardManager : MonoBehaviour
@@ -8,7 +9,8 @@ public class CardManager : MonoBehaviour
     /// <summary>
     /// easy(8 cards), medium(16 cards), hard(32 cards)
     /// </summary>
- 
+
+    public static int gameMode;
     public GameObject[] card;
     public Sprite[] cardBackSprite;
     public bool flag;
@@ -25,6 +27,8 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log($"Current game mode is: {gameMode}");
+
         flag = false;
         AssignCardSprite();
         checkCD = 0;
@@ -43,7 +47,11 @@ public class CardManager : MonoBehaviour
         }
         onlyTwoCardAllowed();
         DeleteCard();
-       
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("WalkingTest");
+        }
     }
     
     void DeleteCard()
