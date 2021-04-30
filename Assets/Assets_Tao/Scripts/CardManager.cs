@@ -9,18 +9,17 @@ public class CardManager : MonoBehaviour
     /// easy(8 cards), medium(16 cards), hard(32 cards)
     /// </summary>
  
-    public GameObject []card;
+    public GameObject[] card;
     public Sprite[] cardBackSprite;
     public bool flag;
     public float timer = 4.0f;
     public static int cardCount;
 
     private float checkCD;
-    private GameObject[] cardBack;
-    [SerializeField] private List<GameObject> cardList = new List<GameObject>();
+    [SerializeField] private List<FlipCard> cardList = new List<FlipCard>();
     private List<int> useIndex = new List<int>();
     private List<int> rawIndex = new List<int>();
-    public static List<GameObject> activeCard = new List<GameObject>();
+    public static List<FlipCard> activeCard = new List<FlipCard>();
 
 
     // Start is called before the first frame update
@@ -28,12 +27,12 @@ public class CardManager : MonoBehaviour
     {
         flag = false;
         AssignCardSprite();
-        RandomCardBack();
         checkCD = 0;
         foreach (var c in card)
         {
-            cardList.Add(c.transform.GetChild(0).gameObject);
+            cardList.Add(c.GetComponentInChildren<FlipCard>());
         }
+        RandomCardBack();
     }
 
     private void Update()
@@ -51,16 +50,15 @@ public class CardManager : MonoBehaviour
     {
         if (flag && checkCD <= 0)
         {
-            if (activeCard[0].transform.GetChild(1).GetComponent<Image>().sprite.name.ToString()
-           == activeCard[1].transform.GetChild(1).GetComponent<Image>().sprite.name.ToString())
+            if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
                 if (timer < 1)
                 {
                     checkCD = 1.1f;
-                    activeCard[0].GetComponent<FlipCard>().StayTurned();
-                    activeCard[1].GetComponent<FlipCard>().StayTurned();
-                    activeCard[0].transform.parent.GetComponent<Button>().enabled = false;
-                    activeCard[1].transform.parent.GetComponent<Button>().enabled = false;
+                    activeCard[0].StayTurned();
+                    activeCard[1].StayTurned();
+                    activeCard[0].parentButton.enabled = false;
+                    activeCard[1].parentButton.enabled = false;
                     foreach (var item in activeCard)
                     {
                         if(cardList.Contains(item))
@@ -82,7 +80,7 @@ public class CardManager : MonoBehaviour
             flag = true;
             for (int i = 0; i < cardList.Count; i++)
             {
-                cardList[i].transform.parent.GetComponent<Button>().enabled = false;
+                cardList[i].parentButton.enabled = false;
             }
         }
 
@@ -99,19 +97,17 @@ public class CardManager : MonoBehaviour
             timer = 4.0f;
             for (int i = 0; i < cardList.Count; i++)
             {
-                cardList[i].transform.parent.GetComponent<Button>().enabled = true;
+                cardList[i].parentButton.enabled = true;
             }
         }
     }
 
     void AssignCardSprite()
     {
-        cardBack = new GameObject[card.Length];
         //assign cardBack
         for (int i = 0; i < card.Length; i++)
         {
             rawIndex.Add(i);
-            cardBack[i] = card[i].transform.GetChild(0).GetChild(1).gameObject;
         }
     }
 
@@ -122,7 +118,7 @@ public class CardManager : MonoBehaviour
             int tempIndex = Random.Range(0, rawIndex.Count);
             useIndex.Add(rawIndex[tempIndex]);
             rawIndex.RemoveAt(tempIndex);
-            cardBack[i].GetComponent<Image>().sprite = cardBackSprite[useIndex[i]];
+            cardList[i].cardBack.sprite = cardBackSprite[useIndex[i]];
         }
     }
 }

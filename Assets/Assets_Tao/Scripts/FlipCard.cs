@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class FlipCard : MonoBehaviour
 {
-    public GameObject cardBack;
+    public Image parentImage;
+    public Button parentButton;
+
+    public Image cardBack;
     public GameObject cardFront;
     public GameObject btn;
 
@@ -43,7 +46,7 @@ public class FlipCard : MonoBehaviour
     public void StartFlip()
     {
         CardManager.cardCount++;
-        CardManager.activeCard.Add(this.gameObject);
+        CardManager.activeCard.Add(this);
         Debug.Log(this.gameObject);
         //Disable Button
         btn.GetComponent<Button>().enabled= false;
@@ -59,12 +62,12 @@ public class FlipCard : MonoBehaviour
         if (cardBackIsActive == true)
         {
             cardFront.SetActive(true);
-            cardBack.SetActive(false);
+            cardBack.enabled = false;
             cardBackIsActive = false;
         }
         else
         {
-            cardBack.SetActive(true);
+            cardBack.enabled = true;
             cardFront.SetActive(false);
             cardBackIsActive = true;
         }

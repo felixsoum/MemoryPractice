@@ -90,7 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardBack: {fileID: 8968599560131720859}
+  parentImage: {fileID: 8968599559600746801}
+  parentButton: {fileID: 8968599559600746800}
+  cardBack: {fileID: 8968599560131720933}
   cardFront: {fileID: 8968599560162982558}
   btn: {fileID: 8968599559600746806}
   AnimSpeed: 2
@@ -249,7 +251,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8968599560131720932
 RectTransform:
   m_ObjectHideFlags: 0
@@ -284,7 +286,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8968599560131720859}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
