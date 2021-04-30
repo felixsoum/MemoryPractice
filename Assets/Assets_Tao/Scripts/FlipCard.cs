@@ -92,6 +92,12 @@ public class FlipCard : MonoBehaviour
         }
     }
 
+    public void StayTurned()
+    {
+        isRotateFinished = true;
+    }
+
+
     IEnumerator CalculateFlip()
     {
         bRunOnce = true;
