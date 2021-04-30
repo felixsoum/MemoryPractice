@@ -17,6 +17,7 @@ public class CardManager : MonoBehaviour
 
     private float checkCD;
     private GameObject[] cardBack;
+    [SerializeField] private List<GameObject> cardList = new List<GameObject>();
     private List<int> useIndex = new List<int>();
     private List<int> rawIndex = new List<int>();
     public static List<GameObject> activeCard = new List<GameObject>();
@@ -29,6 +30,10 @@ public class CardManager : MonoBehaviour
         AssignCardSprite();
         RandomCardBack();
         checkCD = 0;
+        foreach (var c in card)
+        {
+            cardList.Add(c.transform.GetChild(0).gameObject);
+        }
     }
 
     private void Update()
@@ -52,8 +57,17 @@ public class CardManager : MonoBehaviour
                 if (timer < 1)
                 {
                     checkCD = 1.1f;
-                    activeCard[0].SetActive(false);
-                    activeCard[1].SetActive(false);
+                    activeCard[0].GetComponent<FlipCard>().StayTurned();
+                    activeCard[1].GetComponent<FlipCard>().StayTurned();
+                    activeCard[0].transform.parent.GetComponent<Button>().enabled = false;
+                    activeCard[1].transform.parent.GetComponent<Button>().enabled = false;
+                    foreach (var item in activeCard)
+                    {
+                        if(cardList.Contains(item))
+                        {
+                            cardList.Remove(item);
+                        }
+                    }
                     flag = false;
                     activeCard.Clear();
                 }
@@ -66,9 +80,9 @@ public class CardManager : MonoBehaviour
         if (cardCount == 2)
         {
             flag = true;
-            for (int i = 0; i < card.Length; i++)
+            for (int i = 0; i < cardList.Count; i++)
             {
-                card[i].transform.GetComponent<Button>().enabled = false;
+                cardList[i].transform.parent.GetComponent<Button>().enabled = false;
             }
         }
 
@@ -83,9 +97,9 @@ public class CardManager : MonoBehaviour
         if (cardCount == 0)
         {
             timer = 4.0f;
-            for (int i = 0; i < card.Length; i++)
+            for (int i = 0; i < cardList.Count; i++)
             {
-                card[i].transform.GetComponent<Button>().enabled = true;
+                cardList[i].transform.parent.GetComponent<Button>().enabled = true;
             }
         }
     }
