@@ -300,3 +300,4 @@ MonoBehaviour:
   player: {fileID: 0}
   gameMode: 1
   popUp: {fileID: 1481264986}
+  infoText: {fileID: 1481264987}
