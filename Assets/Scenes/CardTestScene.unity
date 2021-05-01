@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &322655434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ SpriteRenderer:
   m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &322655435
@@ -542,6 +542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 6673020538372603006, guid: 3bfff58640dba284c85792142f82b285, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6673020538372603007, guid: 3bfff58640dba284c85792142f82b285, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -604,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &950392137
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -913,6 +917,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spade02
       objectReference: {fileID: 0}
+    - target: {fileID: 1385729015029414378, guid: 9106e8260d6b2f4499c0a7a669612adc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9106e8260d6b2f4499c0a7a669612adc, type: 3}
 --- !u!1001 &2148956696287800029
@@ -970,6 +978,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 2148956695255838475, guid: 4c4ff4eacff56934f989c06c9c61922c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c4ff4eacff56934f989c06c9c61922c, type: 3}
 --- !u!1001 &2552662586953505961
@@ -982,6 +994,10 @@ PrefabInstance:
     - target: {fileID: 2552662588256776253, guid: 5c17c075729057c48964deb47eab5802, type: 3}
       propertyPath: m_Name
       value: Club07
+      objectReference: {fileID: 0}
+    - target: {fileID: 2552662588256776253, guid: 5c17c075729057c48964deb47eab5802, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2552662588256776255, guid: 5c17c075729057c48964deb47eab5802, type: 3}
       propertyPath: m_RootOrder
@@ -1040,6 +1056,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diamond06
       objectReference: {fileID: 0}
+    - target: {fileID: 2931093221488314579, guid: 877a3943769b8b24985bab6edee2ccfd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2931093221488314581, guid: 877a3943769b8b24985bab6edee2ccfd, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1097,6 +1117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heart04
       objectReference: {fileID: 0}
+    - target: {fileID: 2961161163416062513, guid: 3eec71556a0e84f4eb7feca6e7d6f4be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2961161163416062515, guid: 3eec71556a0e84f4eb7feca6e7d6f4be, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1153,6 +1177,10 @@ PrefabInstance:
     - target: {fileID: 3928557984737810988, guid: f2025cee3b61f694287e5f75711aa7fd, type: 3}
       propertyPath: m_Name
       value: Club03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928557984737810988, guid: f2025cee3b61f694287e5f75711aa7fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3928557984737810990, guid: f2025cee3b61f694287e5f75711aa7fd, type: 3}
       propertyPath: m_RootOrder
@@ -1255,6 +1283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackColor_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 4266165771108997238, guid: 122e3e125d1a90c4d93fe9e95d64598d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 122e3e125d1a90c4d93fe9e95d64598d, type: 3}
 --- !u!1001 &5362777653649759898
@@ -1267,6 +1299,10 @@ PrefabInstance:
     - target: {fileID: 5362777653141652120, guid: f854611404fbb1048a09f27b9a372e8e, type: 3}
       propertyPath: m_Name
       value: Heart05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5362777653141652120, guid: f854611404fbb1048a09f27b9a372e8e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5362777653141652126, guid: f854611404fbb1048a09f27b9a372e8e, type: 3}
       propertyPath: m_RootOrder
@@ -1368,6 +1404,10 @@ PrefabInstance:
     - target: {fileID: 5640005569882918954, guid: 7b213cbbe0c288a48a99670e47f7a41f, type: 3}
       propertyPath: m_Name
       value: Joker_Color
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640005569882918954, guid: 7b213cbbe0c288a48a99670e47f7a41f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b213cbbe0c288a48a99670e47f7a41f, type: 3}
