@@ -10,9 +10,17 @@ public class NPC_Easy : MonoBehaviour
     [SerializeField] private int gameMode; // number for the scene to load
     [SerializeField] private GameObject popUp; // pop up dialog when player is close
 
+    [SerializeField] GameObject warningText;
     [SerializeField] Text infoText;
 
     private GameManager gm;
+
+    private IEnumerator ShowWarning()
+    {
+        warningText.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        warningText.SetActive(false);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +41,26 @@ public class NPC_Easy : MonoBehaviour
         bool isCloseToPlayer = disctance <= 2.5f;
         popUp.SetActive(isCloseToPlayer);
 
-        if (isCloseToPlayer && Input.GetButtonDown("Interact"))
+        if (isCloseToPlayer && Input.GetButtonDown("Interact") )
         {
-            player.Save();
-            CardManager.gameMode = gameMode;
-            SceneManager.LoadScene($"CardFlip{gameMode}");
+            if (gm.clearLevel >= gameMode)
+            {
+                player.Save();
+                CardManager.gameMode = gameMode;
+                gm.currentLevel = gameMode;
+                SceneManager.LoadScene($"CardFlip{gameMode}");
+            }
+            else
+            {
+                if(!warningText.activeSelf)
+                {
+                    StartCoroutine("ShowWarning");
+                }    
+            }
         }
+
+
+
 
         //if (disctance <= 2.5f)//player is close to NPC
         //{
