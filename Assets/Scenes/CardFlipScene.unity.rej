@@ -1,0 +1,12 @@
+diff a/Assets/Scenes/CardFlipScene.unity b/Assets/Scenes/CardFlipScene.unity	(rejected hunks)
+@@ -382,7 +384,9 @@
+   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
+   m_Name: 
+   m_EditorClassIdentifier: 
+-  cardBack: {fileID: 886007780}
++  parentImage: {fileID: 0}
++  parentButton: {fileID: 0}
++  cardBack: {fileID: 0}
+   cardFront: {fileID: 1766831658}
+   btn: {fileID: 1079033169}
+   AnimSpeed: 2
