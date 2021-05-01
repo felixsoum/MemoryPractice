@@ -12,10 +12,15 @@ public class CardManager : MonoBehaviour
 
     public static int gameMode;
     public GameObject[] card;
-    public Sprite[] cardBackSprite;
+    public GameObject canvas;
+    public Transform pos;//image position
+    public Sprite[] cardBackSprite1;
+    public Sprite[] cardBackSprite2;
+    public Sprite[] cardBackSprite3;
     public bool flag;
     public float timer = 4.0f;
     public static int cardCount;
+    public GameObject[] levels;
 
     private float checkCD;
     [SerializeField] private List<FlipCard> cardList = new List<FlipCard>();
@@ -27,16 +32,18 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameMode = 2;
+        CreateLevel(gameMode);
         Debug.Log($"Current game mode is: {gameMode}");
 
         flag = false;
         AssignCardSprite();
-        checkCD = 0;
         foreach (var c in card)
         {
             cardList.Add(c.GetComponentInChildren<FlipCard>());
         }
-        RandomCardBack();
+        LevelCardSprite();
+        checkCD = 0;
     }
 
     private void Update()
@@ -53,7 +60,21 @@ public class CardManager : MonoBehaviour
             SceneManager.LoadScene("WalkingTest");
         }
     }
-    
+
+    void CreateLevel(int gameMode)
+    {
+        GameObject go = Instantiate(levels[gameMode - 1]);
+        card = new GameObject[go.transform.childCount];
+
+        go.transform.parent = canvas.transform;
+        go.transform.position = pos.position;
+        for (int i = 0; i < go.transform.childCount; i++)
+        {
+            card[i] = go.transform.GetChild(i).gameObject;
+        }
+       
+    }
+
     void DeleteCard()
     {
         if (flag && checkCD <= 0)
@@ -119,7 +140,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void RandomCardBack()
+    void RandomCardBack(Sprite[] cardBackSprite)
     {
         for (int i = 0; i < card.Length; i++)
         {
@@ -127,6 +148,24 @@ public class CardManager : MonoBehaviour
             useIndex.Add(rawIndex[tempIndex]);
             rawIndex.RemoveAt(tempIndex);
             cardList[i].cardBack.sprite = cardBackSprite[useIndex[i]];
+        }
+    }
+
+    void LevelCardSprite()
+    {
+        switch (gameMode)
+        {
+            case 1:
+                RandomCardBack(cardBackSprite1);
+                break;
+            case 2:
+                RandomCardBack(cardBackSprite2);
+                break;
+            case 3:
+                RandomCardBack(cardBackSprite3);
+                break;
+            default:
+                break;
         }
     }
 }
