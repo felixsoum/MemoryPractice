@@ -175,9 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 386796582}
   cardFront: {fileID: 487187618}
   btn: {fileID: 915768112}
   AnimSpeed: 2
@@ -384,9 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 886007780}
   cardFront: {fileID: 1766831658}
   btn: {fileID: 1079033169}
   AnimSpeed: 2
@@ -485,9 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 929352139}
   cardFront: {fileID: 352037121}
   btn: {fileID: 1454774838}
   AnimSpeed: 2
@@ -679,9 +673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 1915378394}
   cardFront: {fileID: 907475043}
   btn: {fileID: 680690484}
   AnimSpeed: 2
@@ -2145,9 +2137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 1306001827}
   cardFront: {fileID: 487172692}
   btn: {fileID: 1548746709}
   AnimSpeed: 2
@@ -2246,9 +2236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 644459968}
   cardFront: {fileID: 1799809881}
   btn: {fileID: 984288161}
   AnimSpeed: 2
@@ -2518,9 +2506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 469689151}
   cardFront: {fileID: 497282874}
   btn: {fileID: 2066015378}
   AnimSpeed: 2
@@ -2711,7 +2697,10 @@ MonoBehaviour:
   - {fileID: -2012651394533843531, guid: d2ec7533f13e704418e6ea5c701238bd, type: 3}
   flag: 0
   timer: 4
-  cardList: []
+  checkCD: 0
+  cardBack: []
+  useIndex: 
+  rawIndex: 
 --- !u!4 &1226201971
 Transform:
   m_ObjectHideFlags: 0
@@ -3269,9 +3258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc73357e3d7057b4ca7b79a0aada0f82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentImage: {fileID: 0}
-  parentButton: {fileID: 0}
-  cardBack: {fileID: 0}
+  cardBack: {fileID: 323343417}
   cardFront: {fileID: 926517043}
   btn: {fileID: 1163440761}
   AnimSpeed: 2
