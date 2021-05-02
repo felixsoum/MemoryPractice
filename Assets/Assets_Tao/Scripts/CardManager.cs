@@ -21,7 +21,10 @@ public class CardManager : MonoBehaviour
     public float timer = 4.0f;
     public static int cardCount;
     public GameObject[] levels;
+    public GameObject winPannel;
 
+    private GameObject levelGo;
+    private GameManager gm;
     private float checkCD;
     [SerializeField] private List<FlipCard> cardList = new List<FlipCard>();
     private List<int> useIndex = new List<int>();
@@ -32,8 +35,10 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameMode = 2;
-        CreateLevel(gameMode);
+        gm = GameManager.instance;
+        winPannel.SetActive(false);
+        gameMode = 1;
+        levelGo = CreateLevel(gameMode);
         Debug.Log($"Current game mode is: {gameMode}");
 
         flag = false;
@@ -53,7 +58,11 @@ public class CardManager : MonoBehaviour
             checkCD -= Time.deltaTime;
         }
         onlyTwoCardAllowed();
-        DeleteCard();
+        if(DeleteCard())
+        {
+            winPannel.SetActive(true);
+            Destroy(levelGo);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -61,7 +70,7 @@ public class CardManager : MonoBehaviour
         }
     }
 
-    void CreateLevel(int gameMode)
+    GameObject CreateLevel(int gameMode)
     {
         GameObject go = Instantiate(levels[gameMode - 1]);
         card = new GameObject[go.transform.childCount];
@@ -72,10 +81,10 @@ public class CardManager : MonoBehaviour
         {
             card[i] = go.transform.GetChild(i).gameObject;
         }
-       
+        return go;
     }
 
-    void DeleteCard()
+    bool DeleteCard()
     {
         if (flag && checkCD <= 0)
         {
@@ -100,6 +109,7 @@ public class CardManager : MonoBehaviour
                 }
             }
         }
+        return cardList.Count == 0;
     }
 
     void onlyTwoCardAllowed()
@@ -167,5 +177,9 @@ public class CardManager : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void Win()
+    {
+       
     }
 }
