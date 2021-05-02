@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     
-    public int sceneToLoad;
+    public int currentLevel;
     public bool readyToLoad;
     private float checkCD;
+    public int clearLevel;
 
     public static GameManager instance = null;
 
@@ -34,7 +35,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetSceneToLoad(int v)
     {
-        sceneToLoad = v;
+        currentLevel = v;
     }
 
     private void Awake()
@@ -51,10 +52,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sceneToLoad = 0;
+        currentLevel = 0;
         readyToLoad = false;
         DontDestroyOnLoad(this);
         checkCD = 0f;
+        clearLevel = 1;
     }
 
     // Update is called once per frame
@@ -64,6 +66,11 @@ public class GameManager : MonoBehaviour
         {
             checkCD -= Time.deltaTime;
         }
+
+        //if(Input.GetKeyDown(KeyCode.I))
+        //{
+        //    NextLevel();
+        //}
 
 
         LoadGame();
@@ -76,9 +83,16 @@ public class GameManager : MonoBehaviour
         {
             if (readyToLoad == true)
             {
-                SceneManager.LoadScene(sceneToLoad,LoadSceneMode.Single);
+                SceneManager.LoadScene(currentLevel,LoadSceneMode.Single);
             }
         }
 
+    }
+    public void NextLevel()
+    {
+        if(currentLevel == clearLevel)
+        {
+            clearLevel++;
+        }
     }
 }

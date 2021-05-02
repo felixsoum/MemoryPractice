@@ -152,8 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac41b973a5655f4ab0269b2e4e51643, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 0
+  currentLevel: 0
   readyToLoad: 0
+  clearLevel: 0
 --- !u!4 &151068256
 Transform:
   m_ObjectHideFlags: 0
@@ -327,11 +328,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &632229885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1481264986, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-  m_PrefabInstance: {fileID: 1536247011}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &697497301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -502,17 +498,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 558835521, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3289176374810685156, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
       propertyPath: m_Name
       value: NPC
-      objectReference: {fileID: 0}
-    - target: {fileID: 5454219434997679537, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-      propertyPath: m_Color.r
-      value: 0.9067043
       objectReference: {fileID: 0}
     - target: {fileID: 5710160816571320563, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
       propertyPath: m_RootOrder
@@ -557,18 +545,6 @@ PrefabInstance:
     - target: {fileID: 5710160816571320563, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372740088531851723, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-      propertyPath: popUp
-      value: 
-      objectReference: {fileID: 632229885}
-    - target: {fileID: 8372740088531851723, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8372740088531851723, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
-      propertyPath: gameMode
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fd14b3031f370c4b9b50016df3d0f2a, type: 3}
