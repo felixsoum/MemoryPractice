@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
         if(currentLevel == clearLevel)
         {
             clearLevel++;
+            SceneManager.LoadScene("WalkingTest", LoadSceneMode.Single);
         }
     }
 }
