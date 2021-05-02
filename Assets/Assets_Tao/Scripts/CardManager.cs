@@ -180,6 +180,6 @@ public class CardManager : MonoBehaviour
     }
     public void Win()
     {
-       
+        gm.NextLevel();
     }
 }
