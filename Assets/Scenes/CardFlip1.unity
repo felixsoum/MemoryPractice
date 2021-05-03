@@ -865,6 +865,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2010273430}
     - target: {fileID: 361422120413399698, guid: 5821a6f3f854ba441aca11b7bc95f5c7, type: 3}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2fc4b6413f604d843bebd3424236cbda, type: 3}
+    - target: {fileID: 361422120413399698, guid: 5821a6f3f854ba441aca11b7bc95f5c7, type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 41245232}
