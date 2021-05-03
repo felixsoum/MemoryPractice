@@ -5,23 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int sceneIndex;
-    // Start is called before the first frame update
-    void Start()
-    {
-        sceneIndex = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartGame()
     {
-        sceneIndex++;
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene("WalkingTest");
     }
 
     public void QuitGame()
