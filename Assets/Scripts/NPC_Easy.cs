@@ -48,7 +48,7 @@ public class NPC_Easy : MonoBehaviour
                 player.Save();
                 CardManager.gameMode = gameMode;
                 gm.currentLevel = gameMode;
-                SceneManager.LoadScene($"CardFlip{gameMode}");
+                SceneManager.LoadScene("CardFlip1");
             }
             else
             {
