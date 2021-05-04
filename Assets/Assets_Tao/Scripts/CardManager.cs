@@ -37,7 +37,6 @@ public class CardManager : MonoBehaviour
     {
         gm = GameManager.instance;
         winPannel.SetActive(false);
-        gameMode = 1;
         levelGo = CreateLevel(gameMode);
         Debug.Log($"Current game mode is: {gameMode}");
 
