@@ -48,5 +48,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rigid.MovePosition(rigid.position + velocity * Time.fixedDeltaTime);
+        
     }
+
+
 }
