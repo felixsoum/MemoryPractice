@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class PlaySound : MonoBehaviour
 {
-    public AudioClip audioClip;
-    public AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
     private void Start()
     {
-        audioSource.clip = audioClip;
+        audioSource = GetComponent<AudioSource>();
     }
+
     public void PlayBtnSound()
     {
-        audioSource.Play();
+        if(audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 }
