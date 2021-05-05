@@ -11,6 +11,7 @@ public class CardManager : MonoBehaviour
     /// </summary>
 
     public static int gameMode;
+    public static int score;
     public GameObject[] card;
     public GameObject canvas;
     public Transform pos;//image position
@@ -22,6 +23,8 @@ public class CardManager : MonoBehaviour
     public static int cardCount;
     public GameObject[] levels;
     public GameObject winPannel;
+    public Text scoreText;
+
 
     private GameObject levelGo;
     private GameManager gm;
@@ -35,6 +38,7 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Screen.SetResolution(2560, 1440, false);
         gm = GameManager.instance;
         winPannel.SetActive(false);
         levelGo = CreateLevel(gameMode);
@@ -52,7 +56,8 @@ public class CardManager : MonoBehaviour
 
     private void Update()
     {
-        if(checkCD > 0)
+        scoreText.text = "Score: " + score.ToString();
+        if (checkCD > 0)
         {
             checkCD -= Time.deltaTime;
         }
@@ -101,6 +106,7 @@ public class CardManager : MonoBehaviour
                         if(cardList.Contains(item))
                         {
                             cardList.Remove(item);
+                            StartCoroutine(NumberChange());
                         }
                     }
                     flag = false;
@@ -180,5 +186,14 @@ public class CardManager : MonoBehaviour
     public void Win()
     {
         gm.NextLevel();
+    }
+
+    IEnumerator NumberChange()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            score += 1;
+        }
     }
 }
