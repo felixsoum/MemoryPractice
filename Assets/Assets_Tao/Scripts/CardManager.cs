@@ -19,7 +19,7 @@ public class CardManager : MonoBehaviour
     public Sprite[] cardBackSprite2;
     public Sprite[] cardBackSprite3;
     public bool flag;
-    public float timer = 4.0f;
+    public float timer = 3.5f;
     public static int cardCount;
     public GameObject[] levels;
     public GameObject winPannel;
@@ -38,7 +38,7 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(2560, 1440, false);
+        gameMode = 1;
         gm = GameManager.instance;
         winPannel.SetActive(false);
         levelGo = CreateLevel(gameMode);
@@ -94,7 +94,7 @@ public class CardManager : MonoBehaviour
         {
             if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
-                if (timer < 1)
+                if (timer < 1f)
                 {
                     checkCD = 1.1f;
                     activeCard[0].StayTurned();
@@ -138,7 +138,7 @@ public class CardManager : MonoBehaviour
 
         if (cardCount == 0)
         {
-            timer = 4.0f;
+            timer = 3.0f;
             for (int i = 0; i < cardList.Count; i++)
             {
                 cardList[i].parentButton.enabled = true;

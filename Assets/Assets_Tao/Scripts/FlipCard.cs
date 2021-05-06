@@ -12,7 +12,7 @@ public class FlipCard : MonoBehaviour
     public GameObject cardFront;
     public GameObject btn;
 
-    public int AnimSpeed = 1;
+    public int AnimSpeed = 2;
 
     public bool cardBackIsActive;
 
@@ -29,7 +29,7 @@ public class FlipCard : MonoBehaviour
         bRunOnce = true;
         cardBackIsActive = false;
         isRotateFinished = true;
-        timer = 3.0f;
+        timer = 2f;
     }
 
     private void Update()
@@ -45,9 +45,12 @@ public class FlipCard : MonoBehaviour
     /// </summary>
     public void StartFlip()
     {
-        CardManager.cardCount++;
-        CardManager.activeCard.Add(this);
-        Debug.Log(this.gameObject);
+        //avoid same card 
+        if(!CardManager.activeCard.Contains(this))
+        {
+            CardManager.cardCount++;
+            CardManager.activeCard.Add(this);
+        }
         //Disable Button
         btn.GetComponent<Button>().enabled= false;
         if (isRotateFinished)
@@ -90,7 +93,6 @@ public class FlipCard : MonoBehaviour
                 bRunOnce = false;
                 StartCoroutine(CalculateFlip());
                 isRotateFinished = true;//Disable rotation
-                
             }
         }
     }
@@ -103,8 +105,7 @@ public class FlipCard : MonoBehaviour
 
     IEnumerator CalculateFlip()
     {
-        bRunOnce = true;
-        timer = 3.0f;
+        timer = 2f;
         for (int i = 0; i < 180; i++)
         {
             yield return new WaitForSeconds(0.01f / AnimSpeed);
@@ -115,6 +116,7 @@ public class FlipCard : MonoBehaviour
                 Flip();
             }
         }
+        bRunOnce = true;
         counter = 0;
         //Enable button
         btn.GetComponent<Button>().enabled = true;
