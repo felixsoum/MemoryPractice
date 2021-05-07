@@ -25,7 +25,6 @@ public class CardManager : MonoBehaviour
     public GameObject winPannel;
     public Text scoreText;
 
-
     private GameObject levelGo;
     private GameManager gm;
     private float checkCD;
@@ -38,11 +37,11 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameMode = 1;
+        gameMode = 3;
         gm = GameManager.instance;
         winPannel.SetActive(false);
         levelGo = CreateLevel(gameMode);
-        Debug.Log($"Current game mode is: {gameMode}");
+        levelGo.transform.localScale = 0.5f * Vector3.one;
 
         flag = false;
         AssignCardSprite();
@@ -78,7 +77,6 @@ public class CardManager : MonoBehaviour
     {
         GameObject go = Instantiate(levels[gameMode - 1]);
         card = new GameObject[go.transform.childCount];
-
         go.transform.parent = canvas.transform;
         go.transform.position = pos.position;
         for (int i = 0; i < go.transform.childCount; i++)
