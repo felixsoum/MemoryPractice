@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("jump");
+            rigid.AddForce(new Vector2(0f, 5f), ForceMode2D.Impulse);
+        }
+    }
 
     private void Animate()
     {
@@ -40,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
 
         Animate();
+        Jump();
         Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
         velocity = inputMove.normalized * moveSpeed;
         
