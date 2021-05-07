@@ -37,7 +37,7 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameMode = 3;
+        //gameMode = 3;
         gm = GameManager.instance;
         winPannel.SetActive(false);
         levelGo = CreateLevel(gameMode);
@@ -60,12 +60,14 @@ public class CardManager : MonoBehaviour
         {
             checkCD -= Time.deltaTime;
         }
+        Cheat();
         onlyTwoCardAllowed();
         if(DeleteCard())
         {
             winPannel.SetActive(true);
             Destroy(levelGo);
         }
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -139,7 +141,8 @@ public class CardManager : MonoBehaviour
             timer = 3.0f;
             for (int i = 0; i < cardList.Count; i++)
             {
-                cardList[i].parentButton.enabled = true;
+                if (cardList[i].parentButton != null)
+                    cardList[i].parentButton.enabled = true;
             }
         }
     }
@@ -192,6 +195,15 @@ public class CardManager : MonoBehaviour
         {
             yield return new WaitForSeconds(0.01f);
             score += 1;
+        }
+    }
+
+    public void Cheat()
+    {
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            winPannel.SetActive(true);
+            Destroy(levelGo);
         }
     }
 }
