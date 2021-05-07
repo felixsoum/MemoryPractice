@@ -29,7 +29,7 @@ public class FlipCard : MonoBehaviour
         bRunOnce = true;
         cardBackIsActive = false;
         isRotateFinished = true;
-        timer = 2f;
+        timer = 3f;
     }
 
     private void Update()
@@ -97,15 +97,15 @@ public class FlipCard : MonoBehaviour
         }
     }
 
-    public void StayTurned()
+    public void TurnCard(bool turncard)
     {
-        isRotateFinished = true;
+        isRotateFinished = turncard;
     }
 
 
     IEnumerator CalculateFlip()
     {
-        timer = 2f;
+        timer = 3f;
         for (int i = 0; i < 180; i++)
         {
             yield return new WaitForSeconds(0.01f / AnimSpeed);
@@ -119,6 +119,6 @@ public class FlipCard : MonoBehaviour
         bRunOnce = true;
         counter = 0;
         //Enable button
-        btn.GetComponent<Button>().enabled = true;
+        //btn.GetComponent<Button>().enabled = true;
     }
 }
