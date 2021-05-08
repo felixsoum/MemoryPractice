@@ -49,6 +49,7 @@ public class CardManager : MonoBehaviour
         }
         LevelCardSprite();
         checkCD = 0;
+        flag = true;
     }
 
     private void Update()
@@ -62,12 +63,11 @@ public class CardManager : MonoBehaviour
         onlyTwoCardAllowed();
         DeleteCard();
 
+
         if (cardList.Count == 0)
         {
-            winPannel.SetActive(true);
-            Destroy(levelGo);
+            StartCoroutine(FinishLevel());
         }
-
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -90,7 +90,7 @@ public class CardManager : MonoBehaviour
 
     public void DeleteCard()
     {
-        if (checkCD <= 0)
+        if (checkCD <= 0 && activeCard.Count == 2)
         {
             if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
@@ -112,6 +112,8 @@ public class CardManager : MonoBehaviour
             {
                 checkCD = 1.1f;
                 CardTurn(false);
+                activeCard[0].parentButton.enabled = false;
+                activeCard[1].parentButton.enabled = false;
                 activeCard.Clear();
             }
         }
@@ -119,20 +121,26 @@ public class CardManager : MonoBehaviour
 
     void onlyTwoCardAllowed()
     {
+        if (flag)
+        {
+            timer -= Time.deltaTime;
+        }
+
         if (cardCount == 1)
         {
+            flag = false;
             activeCard[0].TurnCard(true);
         }
 
         if (cardCount == 2)
         {
+            flag = true;
             for (int i = 0; i < cardList.Count; i++)
             {
                 cardList[i].parentButton.enabled = false;
             }
         }
 
-        timer -= Time.deltaTime;
         if (timer <= 0f)
         {
             if(cardCount >= 2)
@@ -198,11 +206,19 @@ public class CardManager : MonoBehaviour
 
     IEnumerator NumberChange()
     {
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.01f);
             score += 1;
         }
+    }
+
+    IEnumerator FinishLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        winPannel.SetActive(true);
+        Destroy(levelGo);
     }
 
     public void Cheat()
@@ -216,7 +232,14 @@ public class CardManager : MonoBehaviour
 
     public void CardTurn(bool bTurn)
     {
-        activeCard[0].TurnCard(bTurn);
-        activeCard[1].TurnCard(bTurn);
+        if (activeCard.Count > 0)
+        {
+            activeCard[0].TurnCard(bTurn);
+        }
+
+        if (activeCard.Count > 1)
+        {
+            activeCard[1].TurnCard(bTurn);
+        }
     }
 }
