@@ -19,7 +19,7 @@ public class CardManager : MonoBehaviour
     public Sprite[] cardBackSprite2;
     public Sprite[] cardBackSprite3;
     public bool flag;
-    public float timer = 3.5f;
+    public float timer = 4f;
     public static int cardCount;
     public GameObject[] levels;
     public GameObject winPannel;
@@ -37,13 +37,11 @@ public class CardManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameMode = 3;
+        gameMode = 1;
         gm = GameManager.instance;
         winPannel.SetActive(false);
         levelGo = CreateLevel(gameMode);
         levelGo.transform.localScale = 0.5f * Vector3.one;
-
-        flag = false;
         AssignCardSprite();
         foreach (var c in card)
         {
@@ -51,6 +49,7 @@ public class CardManager : MonoBehaviour
         }
         LevelCardSprite();
         checkCD = 0;
+        flag = true;
     }
 
     private void Update()
@@ -62,12 +61,13 @@ public class CardManager : MonoBehaviour
         }
         Cheat();
         onlyTwoCardAllowed();
-        if(DeleteCard())
-        {
-            winPannel.SetActive(true);
-            Destroy(levelGo);
-        }
+        DeleteCard();
 
+
+        if (cardList.Count == 0)
+        {
+            StartCoroutine(FinishLevel());
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -88,37 +88,50 @@ public class CardManager : MonoBehaviour
         return go;
     }
 
-    bool DeleteCard()
+    public void DeleteCard()
     {
-        if (flag && checkCD <= 0)
+        if (checkCD <= 0 && activeCard.Count == 2)
         {
             if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
-                if (timer < 1f)
+                checkCD = 1.1f;
+                CardTurn(true);
+                activeCard[0].parentButton.enabled = false;
+                activeCard[1].parentButton.enabled = false;
+                foreach (var item in activeCard)
                 {
-                    checkCD = 1.1f;
-                    activeCard[0].StayTurned();
-                    activeCard[1].StayTurned();
-                    activeCard[0].parentButton.enabled = false;
-                    activeCard[1].parentButton.enabled = false;
-                    foreach (var item in activeCard)
+                    if (cardList.Contains(item))
                     {
-                        if(cardList.Contains(item))
-                        {
-                            cardList.Remove(item);
-                            StartCoroutine(NumberChange());
-                        }
+                        cardList.Remove(item);
+                        StartCoroutine(NumberChange());
                     }
-                    flag = false;
-                    activeCard.Clear();
                 }
+                activeCard.Clear();
+            }
+            else
+            {
+                checkCD = 1.1f;
+                CardTurn(false);
+                activeCard[0].parentButton.enabled = false;
+                activeCard[1].parentButton.enabled = false;
+                activeCard.Clear();
             }
         }
-        return cardList.Count == 0;
     }
 
     void onlyTwoCardAllowed()
     {
+        if (flag)
+        {
+            timer -= Time.deltaTime;
+        }
+
+        if (cardCount == 1)
+        {
+            flag = false;
+            activeCard[0].TurnCard(true);
+        }
+
         if (cardCount == 2)
         {
             flag = true;
@@ -128,17 +141,19 @@ public class CardManager : MonoBehaviour
             }
         }
 
-        timer -= Time.deltaTime;
         if (timer <= 0f)
         {
-            cardCount = 0;
-            flag = false;
-            activeCard.Clear();
+            if(cardCount >= 2)
+            {
+                cardCount = 0;
+                CardTurn(false);
+                activeCard.Clear();
+            }
         }
 
         if (cardCount == 0)
         {
-            timer = 3.0f;
+            timer = 4.0f;
             for (int i = 0; i < cardList.Count; i++)
             {
                 if (cardList[i].parentButton != null)
@@ -191,11 +206,19 @@ public class CardManager : MonoBehaviour
 
     IEnumerator NumberChange()
     {
+        yield return new WaitForSeconds(1f);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(0.01f);
             score += 1;
         }
+    }
+
+    IEnumerator FinishLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        winPannel.SetActive(true);
+        Destroy(levelGo);
     }
 
     public void Cheat()
@@ -204,6 +227,19 @@ public class CardManager : MonoBehaviour
         {
             winPannel.SetActive(true);
             Destroy(levelGo);
+        }
+    }
+
+    public void CardTurn(bool bTurn)
+    {
+        if (activeCard.Count > 0)
+        {
+            activeCard[0].TurnCard(bTurn);
+        }
+
+        if (activeCard.Count > 1)
+        {
+            activeCard[1].TurnCard(bTurn);
         }
     }
 }

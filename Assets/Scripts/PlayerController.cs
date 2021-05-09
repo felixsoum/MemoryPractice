@@ -8,8 +8,9 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 10f;
 
     private Rigidbody2D rigid;
-    private Vector2 velocity;
+    private Vector3 velocity;
     private Animator anim;
+
 
 
     // Start is called before the first frame update
@@ -19,6 +20,14 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Debug.Log("jump");
+            rigid.AddForce(new Vector2(0f, 50f), ForceMode2D.Impulse);
+        }
+    }
 
     private void Animate()
     {
@@ -26,12 +35,16 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxisRaw("Horizontal")<0)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
+           
         }
-        if(Input.GetAxisRaw("Horizontal") > 0)
+        else if(Input.GetAxisRaw("Horizontal") > 0)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
+         
         }
+
     }
+   
 
 
     // Update is called once per frame
@@ -40,14 +53,18 @@ public class PlayerController : MonoBehaviour
 
 
         Animate();
-        Vector2 inputMove = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+        Jump();
+        Vector3 inputMove = new Vector3(Input.GetAxisRaw("Horizontal"), 0f,0f);
         velocity = inputMove.normalized * moveSpeed;
+        transform.position += velocity * Time.deltaTime;
         
     }
 
     private void FixedUpdate()
     {
-        rigid.MovePosition(rigid.position + velocity * Time.fixedDeltaTime);
+            
+            //rigid.MovePosition(rigid.position + velocity * Time.fixedDeltaTime);
+        
         
     }
 
