@@ -63,7 +63,6 @@ public class CardManager : MonoBehaviour
         onlyTwoCardAllowed();
         DeleteCard();
 
-
         if (cardList.Count == 0)
         {
             StartCoroutine(FinishLevel());
@@ -81,6 +80,7 @@ public class CardManager : MonoBehaviour
         card = new GameObject[go.transform.childCount];
         go.transform.parent = canvas.transform;
         go.transform.position = pos.position;
+        //assign prefab
         for (int i = 0; i < go.transform.childCount; i++)
         {
             card[i] = go.transform.GetChild(i).gameObject;
@@ -106,6 +106,7 @@ public class CardManager : MonoBehaviour
                         StartCoroutine(NumberChange());
                     }
                 }
+                timer = 0;//make player can select new card instantly after find 2 same cards
                 activeCard.Clear();
             }
             else
@@ -121,17 +122,20 @@ public class CardManager : MonoBehaviour
 
     void onlyTwoCardAllowed()
     {
+        //Stop time count when 1 card is turned
         if (flag)
         {
             timer -= Time.deltaTime;
         }
-
+        
+        //If only 1 card flips, stay turned
         if (cardCount == 1)
         {
             flag = false;
             activeCard[0].TurnCard(true);
         }
 
+        //Disable all buttons when 2 cards flip
         if (cardCount == 2)
         {
             flag = true;
@@ -141,6 +145,7 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        //Reset activeCard List
         if (timer <= 0f)
         {
             if(cardCount >= 2)
@@ -151,6 +156,7 @@ public class CardManager : MonoBehaviour
             }
         }
 
+        //Enable all buttons except removed cards
         if (cardCount == 0)
         {
             timer = 4.0f;
