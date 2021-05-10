@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,6 +34,7 @@ public class CardManager : MonoBehaviour
     private List<int> rawIndex = new List<int>();
     public static List<FlipCard> activeCard = new List<FlipCard>();
 
+    [SerializeField] ParticleSystem matchParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -94,6 +96,7 @@ public class CardManager : MonoBehaviour
         {
             if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
+                Invoke(nameof(ShowMatchEffect), 0.75f);
                 checkCD = 1.1f;
                 CardTurn(true);
                 activeCard[0].parentButton.enabled = false;
@@ -118,6 +121,11 @@ public class CardManager : MonoBehaviour
                 activeCard.Clear();
             }
         }
+    }
+
+    public void ShowMatchEffect()
+    {
+        matchParticleSystem.Play();
     }
 
     void onlyTwoCardAllowed()
@@ -181,7 +189,7 @@ public class CardManager : MonoBehaviour
     {
         for (int i = 0; i < card.Length; i++)
         {
-            int tempIndex = Random.Range(0, rawIndex.Count);
+            int tempIndex = UnityEngine.Random.Range(0, rawIndex.Count);
             useIndex.Add(rawIndex[tempIndex]);
             rawIndex.RemoveAt(tempIndex);
             cardList[i].cardBack.sprite = cardBackSprite[useIndex[i]];
