@@ -96,7 +96,7 @@ public class CardManager : MonoBehaviour
         {
             if (activeCard[0].cardBack.sprite == activeCard[1].cardBack.sprite)
             {
-                Invoke(nameof(ShowMatchEffect), 0.75f);
+                Invoke(nameof(ShowMatchEffect), 1.5f);
                 checkCD = 1.1f;
                 CardTurn(true);
                 activeCard[0].parentButton.enabled = false;
